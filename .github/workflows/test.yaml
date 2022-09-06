@@ -29,7 +29,8 @@ jobs:
     
     - name: Build Lambda package
       run: |
-        sh /git-terraform-aws/scripts/buid_lambda_package.sh
+        cd scripts
+        sh buid_lambda_package.sh
 
     - name: IaC Apply
       env:
