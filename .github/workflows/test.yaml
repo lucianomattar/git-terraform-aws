@@ -1,12 +1,12 @@
 name: Test on PR
 
 on:
-  pull-request:
-      branches: [master]
+  pull_request:
+    branches: [master]
 
-jobs: 
-  deploy:
-    name: Deploy to Datalake
+jobs:
+  test:
+    name: Test infra on PR
     runs-on: ubuntu-latest
 
     steps:
@@ -27,6 +27,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
 
+    - name: Build Lambda package
+      run: |
+        sh scripts/build_lambda_package.sh
     - name: IaC Apply
       env:
         COMMAND_IAC: terraform
@@ -34,4 +37,4 @@ jobs:
         cd infrastructure
         $COMMAND_IAC init
         $COMMAND_IAC validate
-        $COMMAND_IAC apply -auto-approve
+        $COMMAND_IAC plan
