@@ -1,7 +1,7 @@
-name: Deploy
+name: Test on PR
 
 on:
-  push:
+  pull-request:
       branches: [master]
 
 jobs: 
