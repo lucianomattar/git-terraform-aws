@@ -32,10 +32,11 @@ provider "aws" {
   region = "us-east-2"
 }
 
-terraform{
+# Centralizar o arquivo de controle de estado do terraform
+terraform {
   backend "s3" {
-    bucket = "terraform-state-igti-lu"
-    key = "state/igti/edc/mod1/terraform.tfstate"
+    bucket = "terraform-state-igti-ney"
+    key    = "state/igti/edc/mod1/terraform.tfstate"
     region = "us-east-2"
   }
 }
